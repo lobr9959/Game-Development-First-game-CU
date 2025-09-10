@@ -3,6 +3,8 @@ signal hit
 
 @export var speed = 400
 var screen_size
+var can_be_hit = true
+
 
 func _ready():
 	screen_size = get_viewport_rect().size
@@ -35,12 +37,21 @@ func _process(delta):
 		$AnimatedSprite2D.flip_v = velocity.y > 0
 
 
-func _on_body_entered(body: Node2D) -> void:
-	hide()
-	hit.emit()
-	
-	$CollisionShape2D.set_deferred("disabled", true)
 
+func _on_body_entered(body: Node2D) -> void:
+	if(can_be_hit):
+		hit.emit()
+		can_be_hit = false
+		$HitTimer.start() # give i-frames
+		$HitSound.play() 
+		$AnimatedSprite2D.modulate = Color(1, 0, 0)
+		$CollisionShape2D.set_deferred("disabled", true)
+
+func _on_hit_timer_timeout() -> void:
+	can_be_hit = true
+	$CollisionShape2D.set_deferred("disabled", false)
+	$AnimatedSprite2D.modulate = Color(1, 1, 1)
+	
 func start(pos):
 	position = pos
 	show()

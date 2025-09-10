@@ -1,6 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://chv5okhkunsm4"]
+[gd_scene load_steps=7 format=3 uid="uid://chv5okhkunsm4"]
 
 [ext_resource type="Script" uid="uid://b56a7tgsob74j" path="res://Main.gd" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://bya10qdk7btxe" path="res://mob.tscn" id="2_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://cv60alg7xlja2" path="res://player.tscn" id="3_h2yge"]
+[ext_resource type="AudioStream" uid="uid://cxx7foy1wsty7" path="res://art/01Skrillex-FirstOfTheYearequinox.mp3" id="4_lquwl"]
+[ext_resource type="PackedScene" uid="uid://ncei2vtyu6md" path="res://hud.tscn" id="5_lquwl"]
 
 [sub_resource type="Curve2D" id="Curve2D_ivps1"]
 _data = {
@@ -10,6 +14,9 @@ point_count = 5
 
 [node name="Main" type="Node"]
 script = ExtResource("1_ig7tw")
+mob_scene = ExtResource("2_0xm2m")
+
+[node name="Player" parent="." instance=ExtResource("3_h2yge")]
 
 [node name="MobTimer" type="Timer" parent="."]
 wait_time = 0.5
@@ -17,6 +24,7 @@ wait_time = 0.5
 [node name="ScoreTimer" type="Timer" parent="."]
 
 [node name="StartTimer" type="Timer" parent="."]
+wait_time = 2.0
 one_shot = true
 
 [node name="StartPosition" type="Marker2D" parent="."]
@@ -28,3 +36,13 @@ curve = SubResource("Curve2D_ivps1")
 [node name="MobSpawnLocation" type="PathFollow2D" parent="MobPath"]
 position = Vector2(1, 2)
 rotation = 0.00208333
+
+[node name="GameMusic" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_lquwl")
+
+[node name="HUD" parent="." instance=ExtResource("5_lquwl")]
+
+[connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]
+[connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]
+[connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
+[connection signal="start_game" from="HUD" to="." method="new_game"]
