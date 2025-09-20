@@ -28,10 +28,16 @@ func show_game_over():
 func update_score(score):
 	$ScoreLabel.text = str(score)
 
+func update_level(level):
+	$LevelLabel.text = "Level: " + str(level)
+	
+func update_health(health):
+	$HP.text = str(health)
 
 func _on_start_button_pressed() -> void:
 	$StartButton.hide()
 	start_game.emit()
+
 
 
 func _on_message_timer_timeout() -> void:

@@ -4,6 +4,12 @@ extends Node
 var score
 var health = 5
 
+var level = 1 	#7 total levels, so scale accordingly
+var seconds_elapsed = 0
+var level_duration := 30      #seconds per level
+var mob_speed_multiplier := 1.0
+var min_mob_timer = 0.25      # do not let mob timer go under this
+
 func _ready():
 	$Player.hit.connect(_on_player_hit)
 
@@ -14,6 +20,7 @@ func game_over() -> void:
 	$GameMusic.stop()
 	$HUD/ScoreLabel.hide()
 	$HUD/Heart.hide()
+	$HUD/LevelLabel.hide()
 	$HUD/HP.hide()
 	print("Game Over!")
 	$HUD.show_game_over()
@@ -22,7 +29,9 @@ func game_over() -> void:
 func new_game():
 	score = 0
 	health = 5
+	level = 1
 	update_hp_label()
+	$HUD.update_level(level)
 	$HUD.update_score(score)
 	$HUD.show_message("")
 	$Player.start($StartPosition.position)
@@ -31,6 +40,7 @@ func new_game():
 	$HUD/ScoreLabel.show()
 	$HUD/Heart.show()
 	$HUD/HP.show()
+	$HUD/LevelLabel.show()
 
 
 func _on_mob_timer_timeout():
@@ -52,8 +62,34 @@ func _on_mob_timer_timeout():
 	mob.rotation = direction
 
 	# Choose the velocity for the mob.
-	var velocity = Vector2(randf_range(150.0, 250.0), 0.0)
-	mob.linear_velocity = velocity.rotated(direction)
+	if(level == 1):
+		$MobTimer.wait_time = 1.2
+		var velocity = Vector2(randf_range(100.0, 150.0), 0.0)
+		mob.linear_velocity = velocity.rotated(direction)
+	if(level == 2):
+		$MobTimer.wait_time = 0.9
+		var velocity = Vector2(randf_range(100.0, 200.0), 0.0)
+		mob.linear_velocity = velocity.rotated(direction)
+	if(level == 3):
+		$MobTimer.wait_time = 0.8
+		var velocity = Vector2(randf_range(100.0, 250.0), 0.0)
+		mob.linear_velocity = velocity.rotated(direction)
+	if(level == 4):
+		$MobTimer.wait_time = 0.7
+		var velocity = Vector2(randf_range(150.0, 250.0), 0.0)
+		mob.linear_velocity = velocity.rotated(direction)
+	if(level == 5):
+		$MobTimer.wait_time = 0.6
+		var velocity = Vector2(randf_range(150.0, 250.0), 0.0)
+		mob.linear_velocity = velocity.rotated(direction)
+	if(level == 6):
+		$MobTimer.wait_time = 0.5
+		var velocity = Vector2(randf_range(150.0, 250.0), 0.0)
+		mob.linear_velocity = velocity.rotated(direction)
+	if(level == 7):
+		$MobTimer.wait_time = 0.4
+		var velocity = Vector2(randf_range(150.0, 250.0), 0.0)
+		mob.linear_velocity = velocity.rotated(direction)
 
 	# Spawn the mob by adding it to the Main scene.
 	add_child(mob)
@@ -66,6 +102,15 @@ func clear_mobs():
 func _on_score_timer_timeout() -> void:
 	score += 1
 	$HUD.update_score(score)
+	if(score%30 == 0):
+		level +=1
+		$HUD.update_level(level)
+		$LevelUpSFX.play()
+	if(score%50 == 0):
+		health +=1
+		$HealSFX.play()
+		$HUD.update_health(health)
+		
 
 
 func _on_start_timer_timeout() -> void:

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://lwb7r1kxi78j"
+path="res://.godot/imported/HOME - Resonance.mp3-39d2ef9382c0828eac3e3169fa503340.mp3str"
+
+[deps]
+
+source_file="res://art/HOME - Resonance.mp3"
+dest_files=["res://.godot/imported/HOME - Resonance.mp3-39d2ef9382c0828eac3e3169fa503340.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

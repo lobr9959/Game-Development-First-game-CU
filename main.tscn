@@ -1,10 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://chv5okhkunsm4"]
+[gd_scene load_steps=9 format=3 uid="uid://chv5okhkunsm4"]
 
 [ext_resource type="Script" uid="uid://b56a7tgsob74j" path="res://Main.gd" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://bya10qdk7btxe" path="res://mob.tscn" id="2_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://cv60alg7xlja2" path="res://player.tscn" id="3_h2yge"]
-[ext_resource type="AudioStream" uid="uid://cxx7foy1wsty7" path="res://art/01Skrillex-FirstOfTheYearequinox.mp3" id="4_lquwl"]
+[ext_resource type="AudioStream" uid="uid://lwb7r1kxi78j" path="res://art/HOME - Resonance.mp3" id="4_lquwl"]
+[ext_resource type="AudioStream" uid="uid://c1immumistciq" path="res://art/MNT_YTK_fx_course_clear_C.wav" id="5_7mycd"]
 [ext_resource type="PackedScene" uid="uid://ncei2vtyu6md" path="res://hud.tscn" id="5_lquwl"]
+[ext_resource type="AudioStream" uid="uid://dh1xifcdhfd7f" path="res://art/ESM_Fast_Mechanical_Computer_Program_Particle_Sci_Fi_Abstract_Loading_Particle_Military.wav" id="6_272bh"]
 
 [sub_resource type="Curve2D" id="Curve2D_ivps1"]
 _data = {
@@ -39,6 +41,12 @@ rotation = 0.00208333
 
 [node name="GameMusic" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_lquwl")
+
+[node name="HealSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_7mycd")
+
+[node name="LevelUpSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_272bh")
 
 [node name="HUD" parent="." instance=ExtResource("5_lquwl")]
 
