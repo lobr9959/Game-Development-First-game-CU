@@ -12,3 +12,11 @@ I only committed one time, so there won't be commits for every single feature I 
 I used ChatGPT to help me add some of my features, however I did not just copy straight code, I had it walk me through the steps and if I got snagged on something it would help me fix certain errors. 
 
 The main game probably took me around 3-4 hours. Since I was trying to add a lot of my features as I was going through the tutorial, I ended up getting alot of errors especially with signals not going where they should be. Adding the hp functionality took me about an hour, maybe another 15-20 minutes for the hp on the hud. the on hit sound was really quick maybe 5 minutes, and the background music was like a 2 second change. Tt took me longer to download it than implement the change. Getting the timer to feel good on the invicibility after hit took me about 30-45 minutes, just because I was changing it as I was working on other stuff to get a feel for it. Overall it probably took me about 5 or 6 hours to complete my first game. I'm proud of it and didn't think itd be as much fun as it was.
+
+
+---- ASSIGNMENT 2 ADDITIONS ----
+For The second assignment I added 3 loops:
+These include the hp loop, the achievement loop and the difficulty loop.
+In the HP loop, the player dodges enemies and every 50 seconds gains an hp back. 
+In the achievement loop, every thirty seconds a sound plays and the level increments. 
+Within the difficulty loop, every time the level increments, the spawn rate increases and the velocity range increases, making the levels more difficult as you go.
