@@ -20,3 +20,19 @@ These include the hp loop, the achievement loop and the difficulty loop.
 In the HP loop, the player dodges enemies and every 50 seconds gains an hp back. 
 In the achievement loop, every thirty seconds a sound plays and the level increments. 
 Within the difficulty loop, every time the level increments, the spawn rate increases and the velocity range increases, making the levels more difficult as you go.
+
+
+---- ADDING JUICE ----
+
+1st addition: Changed background to dungeon. Took about 15 minutes, getting the background image took the longest
+
+2nd addition: Changed player and mob animation to be slimes. Blue slimes are good, others are evil. creating the animations took me about an hour, it took me a long time to decide on what sort of mob/character I wanted to add to the game
+
+3rd addition: Added blood particle effects on hit. This took me about 30 minutes, I didn't know how to scale the particle effect properly and at first every time on hit, the particle was huge and had gravity and would spawn like 20 blood particles
+
+4th addition: Added camera shake on hit. This took me about 30 minutes. I wasn't sure how to add the camera shake, I first had to had a camera2D node and then add the camera shake on top of that.
+
+5th addition: Changed "levels" to waves and adjusted UI to have same baseline. this was a quick fix just a UI change. It took me about 15 minutes to move all the UI around and get it to have the margins that I wanted. 
+
+6th addition: Added a game over sound effect and fixed the timers persisting after game ends. This took me about 30 minutes, I wasn't sure exactly why the timers would continue after the game would end. It was a simple fix though and I ended up just having to do $timer.stop() for each of the timers, I felt dumb after figuring this one out.
+
