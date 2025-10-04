@@ -17,9 +17,9 @@ func show_message(text):
 	
 func show_game_over():
 	show_message(("Game Over"))
-	await $MessageTimer.timeout
+	await $MessageTimer.timeouta
 	
-	$Message.text = "Dodge the Creeps!"
+	$Message.text = "Dodge the Slimes!"
 	$Message.show()
 	
 	await get_tree().create_timer(1.0).timeout
@@ -29,7 +29,7 @@ func update_score(score):
 	$ScoreLabel.text = str(score)
 
 func update_level(level):
-	$LevelLabel.text = "Level: " + str(level)
+	$LevelLabel.text = "Wave: " + str(level)
 	
 func update_health(health):
 	$HP.text = str(health)

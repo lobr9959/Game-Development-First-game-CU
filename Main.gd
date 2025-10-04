@@ -13,8 +13,19 @@ var min_mob_timer = 0.25      # do not let mob timer go under this
 func _ready():
 	$Player.hit.connect(_on_player_hit)
 
+func camera_shake():
+	var camera = $Camera2D
+	var tween = create_tween()
+	for i in range(5): # number of shakes
+		var offset = Vector2(randi_range(-5, 5), randi_range(-5, 5))
+		tween.tween_property(camera, "offset", offset, 0.05)
+		tween.tween_property(camera, "offset", Vector2.ZERO, 0.05)
+
 func game_over() -> void:
 	$MobTimer.stop()
+	$ScoreTimer.stop()
+	$ScoreTimer.stop()
+	$gameOverSFX.play()
 	clear_mobs()
 	$Player.hide()
 	$GameMusic.stop()
@@ -105,6 +116,7 @@ func _on_score_timer_timeout() -> void:
 	if(score%30 == 0):
 		level +=1
 		$HUD.update_level(level)
+		
 		$LevelUpSFX.play()
 	if(score%50 == 0):
 		health +=1
@@ -120,6 +132,7 @@ func _on_start_timer_timeout() -> void:
 
 
 func _on_player_hit():
+	camera_shake()
 	health -= 1
 	update_hp_label()
 	if(health <= 0):

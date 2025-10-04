@@ -1,21 +1,21 @@
 [gd_scene load_steps=10 format=3 uid="uid://bya10qdk7btxe"]
 
 [ext_resource type="Script" uid="uid://ehkhpck88unu" path="res://mob.gd" id="1_1qmh0"]
-[ext_resource type="Texture2D" uid="uid://bdqy611mdnkgv" path="res://art/enemyFlyingAlt_1.png" id="2_gfurk"]
-[ext_resource type="Texture2D" uid="uid://bxn41o7qk4get" path="res://art/enemyFlyingAlt_2.png" id="3_ieysi"]
-[ext_resource type="Texture2D" uid="uid://8mk45o4u4rmk" path="res://art/enemySwimming_1.png" id="4_cixyi"]
-[ext_resource type="Texture2D" uid="uid://cxsw02rbubfdb" path="res://art/enemySwimming_2.png" id="5_7ulmv"]
-[ext_resource type="Texture2D" uid="uid://chx1a6emno1qi" path="res://art/enemyWalking_1.png" id="6_pcqmr"]
-[ext_resource type="Texture2D" uid="uid://hq6r50ec6h2g" path="res://art/enemyWalking_2.png" id="7_jbnni"]
+[ext_resource type="Texture2D" uid="uid://cw5oog1hpo6fi" path="res://art/YellowSlime.png" id="2_1qmh0"]
+[ext_resource type="Texture2D" uid="uid://co7fkr34xsht3" path="res://art/YellowSlimeSide.png" id="3_gfurk"]
+[ext_resource type="Texture2D" uid="uid://c464tmlhf4seh" path="res://art/PurpleSlimeSide.png" id="4_ieysi"]
+[ext_resource type="Texture2D" uid="uid://b17ba6l8wd1hs" path="res://art/PurpleSlime.png" id="5_cixyi"]
+[ext_resource type="Texture2D" uid="uid://bdvhf0p8glo05" path="res://art/RedSlime.png" id="6_7ulmv"]
+[ext_resource type="Texture2D" uid="uid://duvi1lomwy30h" path="res://art/RedSlimeSide.png" id="7_pcqmr"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_op7ga"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_gfurk")
+"texture": ExtResource("2_1qmh0")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_ieysi")
+"texture": ExtResource("3_gfurk")
 }],
 "loop": true,
 "name": &"fly",
@@ -23,10 +23,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("4_cixyi")
+"texture": ExtResource("4_ieysi")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_7ulmv")
+"texture": ExtResource("5_cixyi")
 }],
 "loop": true,
 "name": &"swim",
@@ -34,10 +34,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("6_pcqmr")
+"texture": ExtResource("6_7ulmv")
 }, {
 "duration": 1.0,
-"texture": ExtResource("7_jbnni")
+"texture": ExtResource("7_pcqmr")
 }],
 "loop": true,
 "name": &"walk",
@@ -45,8 +45,8 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_q13i1"]
-radius = 36.0
-height = 98.0
+radius = 17.0
+height = 48.0
 
 [node name="Mob" type="RigidBody2D"]
 collision_mask = 0
@@ -56,11 +56,13 @@ script = ExtResource("1_1qmh0")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.75, 0.75)
 sprite_frames = SubResource("SpriteFrames_op7ga")
-animation = &"walk"
+animation = &"fly"
+flip_h = true
 
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 4)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_q13i1")
 

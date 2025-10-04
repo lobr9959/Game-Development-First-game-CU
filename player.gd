@@ -45,6 +45,7 @@ func _on_body_entered(body: Node2D) -> void:
 		$HitTimer.start() # give i-frames
 		$HitSound.play() 
 		$AnimatedSprite2D.modulate = Color(1, 0, 0)
+		$HitParticles.restart()
 		$CollisionShape2D.set_deferred("disabled", true)
 
 func _on_hit_timer_timeout() -> void:
